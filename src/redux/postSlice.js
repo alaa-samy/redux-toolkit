@@ -10,11 +10,16 @@ export const postSlice = createSlice({
         addPost : (state , action) =>{
             state.posts.push(action.payload)
         },
-        editPost : () =>{
-
+        editPost : (state , action) =>{
+            state.posts.map(item => {
+                if(item.id === action.payload.id){
+                    item.title = action.payload.title;
+                    item.desc = action.payload.desc
+                };
+            })
         },
         deletePost: (state,action) =>{
-            state.posts = state.posts.filter(item => item.id !== action.payload.id)
+            state.posts = state.posts.filter(item => item.id !== action.payload.id) 
         },
     },
 })
